@@ -3,16 +3,19 @@ pipeline {
     stages {
 	    stage('Compile Stage') {
 	        steps {
-	        	withMaven(maven : 'maven_3.6.3'){
-	        		sh 'mvn clean compile'
-	        	}
+	        	def mvnHome = tool 'M3'
+		        withEnv(["MVN_HOME=$mvnHome"]) {
+		            if (isUnix()) {
+		                sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
+		            } else {
+		                bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+		            }
+		        }
 	        }
 	    }
 	    stage('Test Stage') {
 	        steps {
-	        	withMaven(maven : 'maven_3.6.3'){
-	        		sh 'mvn test'
-	        	}
+	        	echo 'Preparing Testing Stage'
 	        }
 	    }
 
