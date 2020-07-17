@@ -13,11 +13,5 @@ pipeline {
 		        }
 	        }
 	    }
-	    stage('Test Stage') {
-	        steps {
-	        	echo 'Preparing Testing Stage'
-	        }
-	    }
-
     }
 }
