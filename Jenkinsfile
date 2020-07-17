@@ -3,9 +3,10 @@ pipeline {
     stages {
 	    stage('Compile Stage') {
 	        steps {
-	        	def mvnHome = tool 'M3'
+	        	def mvnHome = tool 'maven_3.6.3'
 		        withEnv(["MVN_HOME=$mvnHome"]) {
-	                sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
+		        def mvnCMD = "${MVN_HOME}/bin/mvn"
+	                sh "${mvnCMD} clean package"
 		        }
 	        }
 	    }
