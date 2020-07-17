@@ -24,7 +24,7 @@ node {
     
     stage('Build Docker Image and Push') {
     	docker.withRegistry("https://registry.hub.docker.com", "dockerHub"){
-    		def customImage = docker.build("amw1991/spring-boot-docker-jenkins")
+    		def customImage = docker.build("amw1991/spring-boot-docker-jenkins:1.0.1")
     		
     		customImage.push();
     	}
