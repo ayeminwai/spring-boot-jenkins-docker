@@ -1,10 +1,20 @@
 pipeline {
     agent any 
     stages {
-	    stage('Compile') {
+	    stage('Compile Stage') {
 	        steps {
-	            sh "./mvnw clean install"
+	        	withMaven(maven : 'maven_3.6.3'){
+	        		sh 'mvn clean compile'
+	        	}
 	        }
 	    }
+	    stage('Test Stage') {
+	        steps {
+	        	withMaven(maven : 'maven_3.6.3'){
+	        		sh 'mvn test'
+	        	}
+	        }
+	    }
+
     }
 }
