@@ -1,6 +1,6 @@
 package com.amw.jenkins.springbootjenkinsdocker;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -32,7 +32,7 @@ class SpringbootJenkinsDockerApplicationTests {
 
 	@Test
 	public void getMessage() throws Exception {
-		mockMvc.perform(post("/main/getMessage").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE).content("{}")).andExpect(status().isOk())
+		mockMvc.perform(get("/main/getMessage").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE).content("{}")).andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
 	}
 

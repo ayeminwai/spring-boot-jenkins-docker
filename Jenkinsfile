@@ -2,7 +2,7 @@ node {
     def mvnHome
     
     stage('Preparation') {
-        git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+       	checkup scm
         mvnHome = tool 'maven_3.6.3'
     }
     
