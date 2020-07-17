@@ -23,6 +23,6 @@ node {
     }
     
     stage('Build Docker Image') {
-        sh 'docker build -t amw1991/spring-boot-jenkins-docker:1.0.0 .'
+        sh 'docker build -t amw1991/spring-boot-jenkins-docker:2.0.0 .'
     }
 }
