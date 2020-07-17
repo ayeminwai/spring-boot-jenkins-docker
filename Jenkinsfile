@@ -1,9 +1,11 @@
 pipeline {
     agent any 
     stages {
-        stage('Stage 1') {
+        stage('Maven Package') {
             steps {
-                echo 'Hello world!' 
+                def mvnHome = tool name: 'maven_3.6.3', type: 'maven'
+                def mvnCMD = "${mvnHome}/bin/mvn"
+                sh "${mvnCMD} clean package"
             }
         }
     }
