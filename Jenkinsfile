@@ -1,13 +1,11 @@
 node {
     def mvnHome
-    stage('Preparation') { // for display purposes
-        // Get some code from a GitHub repository
+    
+    stage('Preparation') {
         git 'https://github.com/jglick/simple-maven-project-with-tests.git'
-        // Get the Maven tool.
-        // ** NOTE: This 'M3' Maven tool must be configured
-        // **       in the global configuration.
         mvnHome = tool 'maven_3.6.3'
     }
+    
     stage('Build') {
         // Run the maven build
         withEnv(["MVN_HOME=$mvnHome"]) {
@@ -18,8 +16,13 @@ node {
             }
         }
     }
+    
     stage('Results') {
         junit '**/target/surefire-reports/TEST-*.xml'
         archiveArtifacts 'target/*.jar'
+    }
+    
+    stage('Build Docker Image') {
+        sh 'docker build -t amw1991/springboot-jenkins-docker:1.0.0 .'
     }
 }
