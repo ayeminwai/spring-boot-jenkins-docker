@@ -22,7 +22,11 @@ node {
         archiveArtifacts 'target/*.jar'
     }
     
-    stage('Build Docker Image') {
-        sh 'docker build -t amw1991/spring-boot-jenkins-docker:2.0.0 .'
+    stage('Build Docker Image and Push') {
+    	docker.withRegistry("https://hub.docker.com", "dockerHub"){
+    		def customImage = docker.build("my-image:${}")
+    		
+    		customImage.push();
+    	}
     }
 }
