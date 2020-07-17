@@ -2,7 +2,7 @@ node {
     def mvnHome
     
     stage('Preparation') {
-       	checkout scm
+       	// checkout scm
         mvnHome = tool 'maven_3.6.3'
     }
     
