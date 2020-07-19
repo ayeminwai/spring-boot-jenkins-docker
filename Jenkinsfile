@@ -7,7 +7,7 @@ node {
     }
     
     stage('Build') {
-        // Run the maven build
+        // Run the maven build project
         withEnv(["MVN_HOME=$mvnHome"]) {
             if (isUnix()) {
                 sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
