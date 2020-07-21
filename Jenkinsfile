@@ -24,7 +24,7 @@ node {
     }
     
     stage('Build Docker Image') {
-		def dockerImage = docker.build("amw1991/spring-boot-docker-jenkins")
+		dockerImage = docker.build("amw1991/spring-boot-docker-jenkins")
     }
     
     stage('Push Docker Image') {
