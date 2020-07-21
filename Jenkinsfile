@@ -29,9 +29,7 @@ node {
     
     stage('Push Docker Image') {
     	docker.withRegistry("https://registry.hub.docker.com", "dockerHub"){
-    		def customImage = "$dockerImage"
-    		
-    		customImage.push();
+    		dockerImage.push();
     	}
     }
 }
