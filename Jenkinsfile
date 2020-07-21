@@ -29,7 +29,7 @@ node {
     
     stage('Push Docker Image') {
     	docker.withRegistry("https://registry.hub.docker.com", "dockerHub"){
-    		dockerImage.push();
+    		dockerImage.push("latest");
     	}
     }
 }
