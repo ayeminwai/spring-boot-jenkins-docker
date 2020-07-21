@@ -1,5 +1,6 @@
 node {
     def mvnHome
+    def dockerImage
     
     stage('Preparation') {
        	// checkout scm
@@ -22,9 +23,13 @@ node {
         archiveArtifacts 'target/*.jar'
     }
     
-    stage('Build Docker Image and Push') {
+    stage('Build Docker Image') {
+		def dockerImage = docker.build("amw1991/spring-boot-docker-jenkins")
+    }
+    
+    stage('Push Docker Image') {
     	docker.withRegistry("https://registry.hub.docker.com", "dockerHub"){
-    		def customImage = docker.build("amw1991/spring-boot-docker-jenkins")
+    		def customImage = "$dockerImage"
     		
     		customImage.push();
     	}
